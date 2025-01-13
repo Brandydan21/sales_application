@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",       // Output directory for compiled files
+    "rootDir": "./src",       // Source directory
+    "strict": true,           // Enable strict type checking
+    "moduleResolution": "node",
+    "esModuleInterop": true   // Allow default imports from CommonJS modules
+  }
+}
