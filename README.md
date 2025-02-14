@@ -37,3 +37,14 @@ $ npm run start
   }
 }
 ```
+post_db run
+```
+podman run -d \
+  --name postgres_container \
+  -e POSTGRES_USER=myuser \
+  -e POSTGRES_PASSWORD=bd1234 \    
+  -e POSTGRES_DB=mydatabase \
+  -v pg_data:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  docker.io/library/postgres:17.3  
+```
