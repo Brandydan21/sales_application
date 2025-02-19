@@ -37,14 +37,16 @@ $ npm run start
   }
 }
 ```
-post_db run
+
+Run postgres database in podman container
 ```
-podman run -d \
-  --name postgres_container \
-  -e POSTGRES_USER=myuser \
-  -e POSTGRES_PASSWORD=bd1234 \    
-  -e POSTGRES_DB=mydatabase \
-  -v pg_data:/var/lib/postgresql/data \
-  -p 5432:5432 \
-  docker.io/library/postgres:17.3  
+podman run --name postgres -e POSTGRES_USER=devuser -e POSTGRES_PASSWORD=password -p 5432:5432 -v $PWD/database:/var/lib/postgresql/data -d postgres:17.3
 ```
+
+After running database run the initial migration
+initial migration
+```
+ npx prisma migrate dev --name init
+```
+
+
