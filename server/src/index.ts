@@ -1,4 +1,4 @@
-import create_app from './server'
+import create_app from './app/server'
 import dotenv from 'dotenv'; 
 
 
