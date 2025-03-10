@@ -21,9 +21,23 @@ export default class SalespersonController{
     static async createAllSalesperson(req: Request<{},{},CreateSalesPersonRequest>, res: Response) {
       try {
           const { firstName, lastName, email, phoneNumber } = req.body;
+          
+          const used_email = await prisma.salesperson.findUnique({
+            where: {
+              email: email, // Convert string to number
+            },
+          });
+
+          if (used_email){
+            res.status(409).json({error:`Email:${email} already used`});
+            return;
+          }
+
           const salesPerson = await prisma.salesperson.create({
           data: { firstName, lastName, email, phoneNumber },
           });
+
+
           res.status(200).json({data:salesPerson});
       } catch (error) {
         res.status(500).json({ error: error });
@@ -57,6 +71,17 @@ export default class SalespersonController{
     static async removeSalesperson(req: Request<{},{},RemoveSalespersonRequest>, res: Response) {
       try{
         const {id} = req.body
+        const existingUser = await prisma.salesperson.findUnique({
+          where: {
+            id: id,
+          },
+        });
+
+        if (!existingUser){
+          res.status(404).json({error:`User ID ${id} does not exist`});
+          return;
+        }
+        
         const salesPerson = await prisma.salesperson.delete(
           {
             where:{
@@ -64,6 +89,7 @@ export default class SalespersonController{
             },
           }
         );
+
         res.status(200).json({data:salesPerson});
       }catch(error){
         res.status(500).json({ error: error });
@@ -74,6 +100,17 @@ export default class SalespersonController{
     static async updateSalesperson(req: Request<{},{},UpdateSalesPersonRequest>, res: Response){
       try{
         const { id, update_data } = req.body;
+        const used_email = await prisma.salesperson.findUnique({
+          where: {
+            email: update_data.email, // Convert string to number
+          },
+        });
+
+        if (used_email){
+          res.status(409).json({error:`Email:${update_data.email} already used`});
+          return;
+        }
+
         const salesPerson = await prisma.salesperson.update({
           where:{
             id: id

@@ -13,7 +13,7 @@ SalesPersonRouter.post('/create', SalesPerson.createAllSalesperson);
 SalesPersonRouter.put('/update', SalesPerson.updateSalesperson);
 
 // Delete SalesPerson
-SalesPersonRouter.put('/delete', SalesPerson.updateSalesperson);
+SalesPersonRouter.delete('/delete', SalesPerson.removeSalesperson);
 
 // Get Single SalePerson
 SalesPersonRouter.get('/:id', SalesPerson.getSpecificSalesperson);
