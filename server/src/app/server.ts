@@ -17,7 +17,7 @@ const create_app = () =>{
     res.send('Hello World from TypeScript and Express!');
   });
 
-  app.use('/salespersons', SalesPersonRouter)
+  app.use('/salesperson', SalesPersonRouter)
 
   
   return app;

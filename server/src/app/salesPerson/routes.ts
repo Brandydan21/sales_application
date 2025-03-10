@@ -6,7 +6,17 @@ const SalesPersonRouter = express.Router();
 //Get all SalesPerson
 SalesPersonRouter.get('/', SalesPerson.getAllSalesperson);
 
-//Get SalesPerson
+//Create SalesPerson
 SalesPersonRouter.post('/create', SalesPerson.createAllSalesperson);
+
+//Update SalesPerson
+SalesPersonRouter.put('/update', SalesPerson.updateSalesperson);
+
+// Delete SalesPerson
+SalesPersonRouter.put('/delete', SalesPerson.updateSalesperson);
+
+// Get Single SalePerson
+SalesPersonRouter.get('/:id', SalesPerson.getSpecificSalesperson);
+
 
 export default SalesPersonRouter;
