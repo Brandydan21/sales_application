@@ -1,6 +1,7 @@
 import express, { Request, Response, Application } from 'express';
 import cors from "cors";
 import SalesPersonRouter from './salesPerson/routes';
+import ClientRouter from './client/routes';
 
 const create_app = () =>{
 
@@ -18,6 +19,8 @@ const create_app = () =>{
   });
 
   app.use('/salesperson', SalesPersonRouter)
+  app.use('/client', ClientRouter)
+
 
   
   return app;
