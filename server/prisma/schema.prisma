@@ -8,20 +8,23 @@ datasource db {
 }
 
 model Client {
-  id    Int    @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   firstName   String
   lastName    String
-  email String @unique
+  email       String @unique
   phoneNumber String
+  password    String 
   inquiries   SalesInquiry[]
 }
 
 model Salesperson {
-  id    Int    @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   firstName   String
   lastName    String
-  email String @unique
+  email       String @unique
   phoneNumber String
+  superuser   Boolean 
+  password    String 
   inquiries   SalesInquiry[]
 }
 
